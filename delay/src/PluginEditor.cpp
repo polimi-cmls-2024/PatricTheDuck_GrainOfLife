@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-ComplexDelayAudioProcessorEditor::ComplexDelayAudioProcessorEditor(ComplexDelayAudioProcessor& p)
+ComplexDelayAudioProcessorEditor::ComplexDelayAudioProcessorEditor(ComplexDelayAudioProcessor &p)
     : AudioProcessorEditor(&p),
       delayLengthLabel("Delay Length", "Delay (sec):"),
       feedbackLabel("Feedback", "Feedback:"),
@@ -13,10 +13,11 @@ ComplexDelayAudioProcessorEditor::ComplexDelayAudioProcessorEditor(ComplexDelayA
 
       audioProcessor(p)
 {
-    setSize (700, 500);
-    
+    setSize(700, 500);
+
     // Slider common settings
-    auto configureSlider = [this](juce::Slider& slider, double min, double max, double interval) {
+    auto configureSlider = [this](juce::Slider &slider, double min, double max, double interval)
+    {
         slider.setSliderStyle(juce::Slider::Rotary);
         slider.setRange(min, max, interval);
         slider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
@@ -32,7 +33,8 @@ ComplexDelayAudioProcessorEditor::ComplexDelayAudioProcessorEditor(ComplexDelayA
     configureSlider(modulationFrequencySlider, 0.01, 10.0, 0.01);
 
     // Label common settings
-    auto configureLabel = [this](juce::Label& label) {
+    auto configureLabel = [this](juce::Label &label)
+    {
         label.setFont(juce::Font(15.0f));
         label.setColour(juce::Label::textColourId, juce::Colours::pink);
         label.setJustificationType(juce::Justification::centred);
@@ -66,8 +68,8 @@ ComplexDelayAudioProcessorEditor::~ComplexDelayAudioProcessorEditor()
 
 void ComplexDelayAudioProcessorEditor::timerCallback()
 {
-    auto* ourProcessor = getProcessor();
-    
+    auto *ourProcessor = getProcessor();
+    // Update the sliders to match the processor's parameters
     delayLengthSlider.setValue(ourProcessor->delayLength, juce::dontSendNotification);
     feedbackSlider.setValue(ourProcessor->feedback, juce::dontSendNotification);
     dryMixSlider.setValue(ourProcessor->dryMix, juce::dontSendNotification);
@@ -76,24 +78,36 @@ void ComplexDelayAudioProcessorEditor::timerCallback()
     modulationFrequencySlider.setValue(ourProcessor->modulationFrequency, juce::dontSendNotification);
 }
 
-void ComplexDelayAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
+void ComplexDelayAudioProcessorEditor::sliderValueChanged(juce::Slider *slider)
 {
-    if (slider == &delayLengthSlider) {
+    // When a slider is moved, update the processor's parameters
+    if (slider == &delayLengthSlider)
+    {
         getProcessor()->setParameter(ComplexDelayAudioProcessor::delayLengthParam, static_cast<float>(slider->getValue()));
-    } else if (slider == &feedbackSlider) {
+    }
+    else if (slider == &feedbackSlider)
+    {
         getProcessor()->setParameter(ComplexDelayAudioProcessor::feedbackParam, static_cast<float>(slider->getValue()));
-    } else if (slider == &dryMixSlider) {
+    }
+    else if (slider == &dryMixSlider)
+    {
         getProcessor()->setParameter(ComplexDelayAudioProcessor::dryMixParam, static_cast<float>(slider->getValue()));
-    } else if (slider == &wetMixSlider) {
+    }
+    else if (slider == &wetMixSlider)
+    {
         getProcessor()->setParameter(ComplexDelayAudioProcessor::wetMixParam, static_cast<float>(slider->getValue()));
-    } else if (slider == &modulationDepthSlider) {
+    }
+    else if (slider == &modulationDepthSlider)
+    {
         getProcessor()->setParameter(ComplexDelayAudioProcessor::modulationDepthParam, static_cast<float>(slider->getValue()));
-    } else if (slider == &modulationFrequencySlider) {
+    }
+    else if (slider == &modulationFrequencySlider)
+    {
         getProcessor()->setParameter(ComplexDelayAudioProcessor::modulationFrequencyParam, static_cast<float>(slider->getValue()));
     }
 }
 
-void ComplexDelayAudioProcessorEditor::paint(juce::Graphics& g)
+void ComplexDelayAudioProcessorEditor::paint(juce::Graphics &g)
 {
     g.fillAll(juce::Colour(0xff323e44)); // Background color
     g.setColour(juce::Colours::white);
@@ -104,15 +118,15 @@ void ComplexDelayAudioProcessorEditor::resized()
 {
     int sliderHeight = 150;
     int padding = 20;
-    
+
     auto area = getLocalBounds();
     auto leftArea = area.removeFromLeft(area.getWidth() / 2);
     auto rightArea = area;
-    
+
     delayLengthSlider.setBounds(leftArea.removeFromTop(sliderHeight).reduced(padding));
     feedbackSlider.setBounds(leftArea.removeFromTop(sliderHeight).reduced(padding));
     dryMixSlider.setBounds(leftArea.removeFromTop(sliderHeight).reduced(padding));
-    
+
     wetMixSlider.setBounds(rightArea.removeFromTop(sliderHeight).reduced(padding));
     modulationDepthSlider.setBounds(rightArea.removeFromTop(sliderHeight).reduced(padding));
     modulationFrequencySlider.setBounds(rightArea.removeFromTop(sliderHeight).reduced(padding));
