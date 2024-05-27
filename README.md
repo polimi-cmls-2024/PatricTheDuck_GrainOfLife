@@ -52,7 +52,7 @@ Developed with JUCE, the system includes four plugins to enhance audio:
 </p>
 
 ### 5. Routing
-- **Audio Routing**: Uses BlackHole (MacOS virtual audio loopback driver) to route audio from SuperCollider to a DAW where it is processed by the VST plugins without added latency.
+- **Audio Routing**: Uses BlackHole (MacOS virtual audio loopback driver) to route real-time audio buffer from SuperCollider to a DAW where it is processed by the VST plugins without latency.
 
 ## Conclusion
 **Grain of Life** creates unique soundscapes through the interaction of granular synthesis and the evolving patterns of Conway's Game of Life, augmented by user inputs and enhanced by custom VST plugins. This system is ideal for creating immersive audio experiences for art installations.
