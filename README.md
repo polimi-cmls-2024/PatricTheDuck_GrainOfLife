@@ -28,30 +28,38 @@
 - **Granular Synthesis**: Implemented using the GrainBuf UGen in SuperCollider.
 - **Parameters**: Users can adjust parameters such as number of channels, grain duration, playback rate, position, panning, and envelope buffer.
 
-### 4. VST Plugins
+### 4. Processing
+We used Processing to create the gui, it is composed by a two-dimensional orthogonal grid of square cells and a red pointer, that can be moved, with the pattern of the 2-glider mess. We also used Processing to implement the logic for interactive game of life.
+<p align="center">
+   <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/processing.jpg">
+</p>
+
+### 5. VST Plugins
 Developed with JUCE, the system includes four plugins to enhance audio:
 
-#### 4.1 Reverb
+#### 5.1 Reverb
 <p align="center">
  <img src= "https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/Reverb.png">
 </p>
 
-#### 4.2 Equalizer
+#### 5.2 Equalizer
 <p align="center">
  <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/equalizer.png">
 </p>
 
-#### 4.3 Delay
+#### 5.3 Delay
 <p align="center">
  <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/Delay.png">
 </p>
 
-#### 4.4 Bitcrusher
+#### 5.4 Bitcrusher
 <p align="center">
  <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/bitcrusher.jpg">
 </p>
 
-### 5. Routing
+### 6. Routing and Comunications
+- **Comunications**: Processing and supercollider communicate with the use OSC message in local machine. The OSC message is also used to send information between the Arduino and processing, but in this case the OSC message is sent through the network.
+
 - **Audio Routing**: Uses BlackHole (MacOS virtual audio loopback driver) to route real-time audio buffer from SuperCollider to a DAW where it is processed by the VST plugins without latency.
 
 ## Conclusion
