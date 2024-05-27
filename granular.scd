@@ -49,6 +49,42 @@ b.play;
 b.free;
 s.clear;
 
+
+
+/* GRANULATOR PARAMETERS
+
+1. Number of output channels (default = 2)
+
+2. Time periodicity of the grain arg sync --> is a boolean variable that switch between the Dust and the Impulse function sync = 0 correspond to Dust() --> non periodic repetitons of the grai sync = 1 correspond to Impulse() --> periodic repetitons of the grain
+	arg dens --> desity of grains per seconds es. dens = 10 Impulse(dens); --> we have 10 repetiton of the grain in a second
+
+3. Size of the grain arg grainDur --> duration of a grain
+	arg durRand --> is a variable that we can use if we want random changes of durations
+
+4. Audio sample arg buf --> has to be = the buffer that contains our audio sample N.B. audio sample has to be mono
+
+5. Playback rate arg rate --> is a variable that can change the pitch of the grain: = 0.5 is an octave lower, = 2 is an octave higher
+
+6. Position of the grain respect the track length arg pos --> has to be a value between 0 and 1, indicates where the grain is taken
+	arg posSpeed --> is a variable that changes the speed of the grain
+	arg posRans --> is a parameter we can use to random sligthly change the positon of a grain taken for the future repetition
+
+7. Interpolation method (default = 2)
+
+8. Panning arg pan --> is a value between -1 and 1 that determines the spatial position of the sound
+	arg panHz --> is the frequency of a possible variation in panning (is at kr)
+	arg panRand --> is a value between 0 and 1 that is responsable to panning random variations
+
+9. Shape of the envelope arg grainEnv --> is the shape used for a grain reproduction, you can create a custom one
+
+10. Parameters for general envelope of the sound arg atk arg sus arg rel arg c0 arg c1
+
+11. Max number of overlapping grains (default = 512)
+
+12. Additional parameters arg amp --> is the amplitude of the output signal arg out
+
+*/
+
 (
 SynthDef.new(\gs, {
 	arg sync=1, dens=20,
