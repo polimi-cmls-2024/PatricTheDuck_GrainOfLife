@@ -33,18 +33,22 @@ Developed with JUCE, the system includes four plugins to enhance audio:
 <p align="center">
  <img src= "https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/Reverb.png">
 </p>
+
 #### 4.2 Equalizer
 <p align="center">
  <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/equalizer.png">
 </p>
 #### 4.3 Delay
+
 <p align="center">
  <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/Delay.png">
 </p>
 #### 4.4 Bitcrusher
+
 <p align="center">
  <img src="https://github.com/polimi-cmls-2024/PatricTheDuck_GrainOfLife/blob/main/img/bitcrusher.jpg">
 </p>
+
 ### 5. Routing
 - **Audio Routing**: Uses BlackHole (MacOS virtual audio loopback driver) to route audio from SuperCollider to a DAW where it is processed by the VST plugins without added latency.
 
